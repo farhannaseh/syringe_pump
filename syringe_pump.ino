@@ -3,7 +3,7 @@
 #include <TimerOne.h>
 
 // pin definitions 
-const byte buttonPin = A0; // analogue pin 0
+const byte buttonPin = A0; // Analog Pin A0
 const byte motorDirPin = 2;
 const byte motorStepPin = 3;
 const byte MS1 = 11;
@@ -11,7 +11,7 @@ const byte MS2 = 12;
 const byte MS3 = 13;
 
 // stepper motor constants
-long steps_per_revolution = 400;
+long steps_per_revolution = 20;
 int usteps_per_step[] = {1, 2, 4, 8, 16}; // microsteps per step
 int step_table[] = {LOW,  LOW,  LOW,   // full step
                     HIGH, LOW,  LOW,   // half step 
@@ -24,23 +24,23 @@ float MIN_FLOW_RATE = 0.99/60.0; // min flow rate, mL/min, accounts for round-of
 float MAX_FLOW_RATE = 60.0/60.0; // max flow rate, mL/min
 
 // syringe pump constants
-float syringe_volume = 60.0; // mL
-float syringe_barrel_length = 109.0; // mm
-float threaded_rod_pitch = 8.0; // mm/rev
+float syringe_volume = 3.0; // mL
+float syringe_barrel_length = 46.0; // mm
+float threaded_rod_pitch = 0.5; // mm/rev
 
 // LCD values
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
 
 int wholePart;
 int decPart;
-String s1 = " syringe_pump   "; // upper line
-String s2 = " 22 aug 2016    "; // lower line
+String s1 = " Syringe Pump   "; // upper line
+String s2 = " Trial          "; // lower line
 
 // Button values
-enum{KEY_SELECT, KEY_RIGHT, KEY_LEFT, KEY_DOWN, KEY_UP, KEY_NONE};
+enum{KEY_RIGHT, KEY_UP, KEY_DOWN, KEY_LEFT, KEY_SELECT, KEY_NONE};
 int NUM_KEYS = 6;
 
-long adc_key_val[6] = {614, 815, 856, 904, 931, 1023}; // button values, mV
+long  adc_key_val[6] ={50, 183, 362, 534, 774, 1023}; // button values, mV
 int adc_error = 5; // button error, mV
 volatile long adc_value = adc_key_val[KEY_NONE];
 
